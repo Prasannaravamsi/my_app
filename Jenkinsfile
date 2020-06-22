@@ -32,12 +32,12 @@ pipeline {
 		   parallel {
 			   stage('Build') {
 			   steps {
-                                echo 'mvn -B -DskipTests clean package'
+                                 sh 'mvn -B -DskipTests clean package'
                             }
 			   }
 			   stage('Test') {
                             steps {
-                                echo 'maven test'
+                               sh 'maven test'
                             }
                         }
 		   }
