@@ -29,13 +29,21 @@ pipeline {
             }
       }
 	   stage ('parallel') {
-		  parallel { 
-                            stage('Master branch') {
-                           git url:'https://github.com/Prasannaravamsi/my_app',branch:'master'
-                           }
-                            stage('feature branch') {
-                            git url:'https://github.com/Prasannaravamsi/my_app',branch:'feature'
-			    }
+		   parallel {
+			    stage('Test On Windows') {
+                    agent {
+                        label "windows"
+                    }
+                    steps {
+			bat 'echo %JAVA_HOME%'
+			}
+			   stage('Test on Linux') {
+                    agent {
+                        label "linux"
+                    }
+                    steps {
+			sh 'ls'
+			}
 		   }
 	   }
 			   
