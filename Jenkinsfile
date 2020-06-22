@@ -25,19 +25,19 @@ pipeline {
 		   }
             }
             steps {
-                echo 'Job building'
+                echo 'Branch is master'
             }
       }
 	   stage ('parallel') {
 		   parallel {
-			   stage('In Parallel 1') {
+			   stage('Build') {
 			   steps {
-                                echo "In Parallel 1"
+                                echo 'mvn -B -DskipTests clean package'
                             }
 			   }
-			   stage('In Parallel 2') {
+			   stage('Test') {
                             steps {
-                                echo "In Parallel 2"
+                                echo 'maven test'
                             }
                         }
 		   }
