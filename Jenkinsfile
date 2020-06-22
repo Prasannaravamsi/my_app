@@ -30,24 +30,18 @@ pipeline {
       }
 	   stage ('parallel') {
 		   parallel {
-			    stage('Test On Windows') {
-                    agent {
-                        label "windows"
+			stage('Test On Windows') {
+				steps {
+				 echo "Test windows"
+				    }   
                     }
-                    steps {
-			bat 'echo %JAVA_HOME%'
-			}
-			   stage('Test on Linux') {
-                    agent {
-                        label "linux"
-                    }
-                    steps {
-			sh 'ls'
-			}
+			 stage('Test on Linux') {
+                      		steps {
+				  echo "Test Linux"
+				    }   
 		   }
 	   }
 			   
    }
 }
-   }
 }
