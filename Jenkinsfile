@@ -20,7 +20,6 @@ pipeline {
       }
       stage ('Condition'){
            when {
-                beforeAgent true
 				branch 'master'
             }
             steps {
