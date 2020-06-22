@@ -30,20 +30,14 @@ pipeline {
       }
 	   stage ('parallel') {
 		  parallel { 
-                            stage('Unit Test') {
+                            stage('Maven version') {
                            steps {
-                                echo "Running the unit test..."
+                                sh "mvn --version"
                            }
                            }
-                            stage('Integration test') {
-                              agent any
-                                    docker {
-                                            reuseNode true
-                                            image 'ubuntu'
-                                           }
-                                    
-                              steps {
-                                echo "Running the integration test..."
+                            stage('Java version') {
+                                    steps {
+                                echo "java --version"
                               }
 			    }
 		   }
