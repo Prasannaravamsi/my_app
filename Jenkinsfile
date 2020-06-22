@@ -37,7 +37,7 @@ pipeline {
                            }
                             stage('Java version') {
                                     steps {
-                                echo 'java --version'
+                                sh 'java --version'
                               }
 			    }
 		   }
