@@ -32,12 +32,12 @@ pipeline {
 		  parallel { 
                             stage('Maven version') {
                            steps {
-                                sh "mvn --version"
+                                sh 'mvn --version'
                            }
                            }
                             stage('Java version') {
                                     steps {
-                                echo "java --version"
+                                echo 'java --version'
                               }
 			    }
 		   }
