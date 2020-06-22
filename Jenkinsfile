@@ -29,17 +29,23 @@ pipeline {
             }
       }
 	   stage ('parallel') {
-		   parallel {
-			   stage('Build') {
-			   steps {
-                                 sh 'mvn -B -DskipTests clean package'
-                            }
-			   }
-			   stage('Test') {
-                            steps {
-                               sh 'maven test'
-                            }
-                        }
+		  parallel { 
+                            stage('Unit Test') {
+                           steps {
+                                echo "Running the unit test..."
+                           }
+                           }
+                            stage('Integration test') {
+                              agent {
+                                    docker {
+                                            reuseNode true
+                                            image 'ubuntu'
+                                           }
+                                    }
+                              steps {
+                                echo "Running the integration test..."
+                              }
+			    }
 		   }
 	   }
 			   
