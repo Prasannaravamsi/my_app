@@ -30,15 +30,11 @@ pipeline {
       }
 	   stage ('parallel') {
 		  parallel { 
-                            stage('Maven version') {
-                           steps {
-                                sh 'mvn --version'
+                            stage('Master branch') {
+                           git url:'https://github.com/Prasannaravamsi/my_app',branch:'master'
                            }
-                           }
-                            stage('Java version') {
-                                    steps {
-                                sh 'java --version'
-                              }
+                            stage('feature branch') {
+                            git url:'https://github.com/Prasannaravamsi/my_app',branch:'feature'
 			    }
 		   }
 	   }
