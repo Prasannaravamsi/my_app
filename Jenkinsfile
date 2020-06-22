@@ -20,7 +20,9 @@ pipeline {
       }
       stage ('Condition'){
            when {
-				branch 'master'
+		   not {
+		branch 'master'
+		   }
             }
             steps {
                 echo 'Job building'
