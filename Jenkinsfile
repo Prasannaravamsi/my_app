@@ -24,9 +24,7 @@ pipeline {
         steps { 
 			echo "User: ${username} said Ok."
 			}
-	      options{
 		      retry(1)
-	      }
 			}
       stage ('Condition'){
            when {
