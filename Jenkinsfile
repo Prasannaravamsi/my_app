@@ -61,8 +61,7 @@ pipeline {
    stage('deploy-test') {
 	   steps {
    retry(2) {
-        input "Retry the job ?"
-        build 'yourJob'
+        build 'pipeline'
      }
 	   }
    }
