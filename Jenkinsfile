@@ -58,11 +58,11 @@ pipeline {
 		   bat 'java -jar target/my-app-1.0-SNAPSHOT.jar'
 			}
     			}
-        post {
+   }
+    post {
         failure {
             echo 'This will run upon failure'
         }
-   }
     
 }
 }
