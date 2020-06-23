@@ -50,11 +50,6 @@ pipeline {
 			steps {
 		   bat 'mvn clean package'
 			}
-        
-    }
-	steps {
-         batchFile( \'java -jar target/my-app-1.0-SNAPSHOT.jar\' )
-}
-				}
+    			}
 }
 }
