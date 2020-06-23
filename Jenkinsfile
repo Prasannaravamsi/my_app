@@ -1,8 +1,5 @@
 pipeline {
    agent any
-	 options {
-        retry(3)
-    }
    tools { 
        maven 'maven' 
         jdk 'JAVA_HOME'  
@@ -14,6 +11,7 @@ pipeline {
 			}
 			}
       stage ('Input directive '){
+	      retry(2) {
 	      options {
                 timeout(time: 10, unit: 'SECONDS') 
 	      } 
@@ -27,8 +25,8 @@ pipeline {
         steps { 
 			echo "User: ${username} said Ok."
 			}
-	      }		
-			
+	      }
+	      }				
 	   stage ('Condition'){
            when {
 		   not {
