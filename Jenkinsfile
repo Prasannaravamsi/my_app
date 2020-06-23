@@ -12,16 +12,8 @@ pipeline {
 			}
       stage ('Input directive '){
 	      steps {
-	      retry(2) {
-		      try{
-			      timeout(time: 10, unit: 'SECONDS') } catch (err){
-			      script{
-                  def user = err.getCauses()[0].getUser()
-                  error "[${user}] catched timeout! $err"
-                }
-		      }
-	      }
-	      }
+	      timeout(time: 10, unit: 'SECONDS')
+		      retry (2) {  
 		input{
             message "Press Ok to continue"
             submitter "user1,user2"
@@ -32,7 +24,7 @@ pipeline {
 	      steps {
 			echo "User: ${username} said Ok."
 	      }
-			
+		      }	
 	      }	
       
 	   stage ('Condition'){
