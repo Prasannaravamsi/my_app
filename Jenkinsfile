@@ -48,8 +48,18 @@ pipeline {
 					}
 		stage ("Build"){
 			steps {
-				bat 'mvn -B -DskipTests clean package'
-				}
+		    mavenInstallation(\'maven\')
+            goals(\'-B -DskipTests clean package\')
+			}
+			maven{
+			mavenInstallation(\'maven\')
+            goals(\'test\')
+			}
+        
+    }
+	steps {
+         batchFile( \'java -jar target/my-app-1.0-SNAPSHOT.jar\' )
+}
 				}
 }
 }
