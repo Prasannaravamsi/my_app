@@ -11,9 +11,15 @@ pipeline {
 			}
 			}
       stage ('Input directive '){
+	      try{
 	      options {
                 timeout(time: 10, unit: 'SECONDS') 
-            }
+	      } catch (err){
+		      echo "The time expired"
+		      retry (2){
+		      build 'pipeline'
+		      }
+	      }
 		input{
             message "Press Ok to continue"
             submitter "user1,user2"
@@ -25,10 +31,7 @@ pipeline {
 			echo "User: ${username} said Ok."
 			}
 			}
-      stage ('Condition'){
-	      options {
-	      retry (2)
-	      }
+	   stage ('Condition'){
            when {
 		   not {
 				branch 'master'
