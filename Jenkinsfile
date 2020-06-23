@@ -10,8 +10,10 @@ pipeline {
             echo 'Hello World'
 			}
 			}
-      stage ('Input directive '){
+      stage ('Input directive '){ 
+	      options {
 	      timeout(time: 10, unit: 'SECONDS')
+	      }
 		input{
             message "Press Ok to continue"
             submitter "user1,user2"
