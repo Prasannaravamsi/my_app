@@ -32,7 +32,9 @@ pipeline {
                 currentBuild.result == ABORTED || currentBuild.result == 'SUCCESS' 
               }
             }
+		   steps {
 	      build 'pipeline'
+		   }
       }
 	   stage ('Condition'){
            when {
