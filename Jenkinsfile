@@ -22,7 +22,7 @@ pipeline {
 	      steps {
 			echo "User: ${username} said Ok."
 	      }
-		      }	
+		     
       }
 	   stage ('Condition'){
            when {
