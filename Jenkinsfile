@@ -25,7 +25,7 @@ pipeline {
 			echo "User: ${username} said Ok."
 			}
 	      }		
-			}
+			
 	   stage ('Condition'){
            when {
 		   not {
@@ -63,8 +63,8 @@ pipeline {
                     build(job: 'pipeline', propagate: true) // This only runs once before the pipeline exits with failure.
                 }
             }
-        }
+   
+		}
+   }
     
 }
-}
-
