@@ -1,5 +1,8 @@
 pipeline {
    agent any
+   options {
+	retry(3)
+    }
    tools { 
        maven 'maven' 
         jdk 'JAVA_HOME'  
@@ -55,16 +58,10 @@ pipeline {
 		   bat 'java -jar target/my-app-1.0-SNAPSHOT.jar'
 			}
     			}
-        stage('bug') {
-            steps {
-                retry(3) {
-                    echo 'in the retry loop'
-                    //throw new Exception('failing in retry loop') // This runs (when uncommented) several times before the pipeline exits with failure.
-                    build(job: 'pipeline', propagate: true) // This only runs once before the pipeline exits with failure.
-                }
-            }
-   
-		}
+        post {
+        failure {
+            echo 'This will run upon failure'
+        }
    }
     
 }
