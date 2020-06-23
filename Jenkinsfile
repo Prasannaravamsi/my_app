@@ -14,7 +14,9 @@ pipeline {
 	      try{
 	      options {
                 timeout(time: 10, unit: 'SECONDS') 
-	      } catch (err){
+	      } 
+	      }
+	      catch (err){
 		      echo "The time expired"
 		      retry (2){
 		      build 'pipeline'
