@@ -4,6 +4,9 @@ pipeline {
        maven 'maven' 
         jdk 'JAVA_HOME'  
     }
+	environment {
+       env.PATH = env.PATH + ";c:\\Windows\\System32"
+   }
    stages {
       stage('Hello') {
          steps {
