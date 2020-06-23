@@ -11,7 +11,6 @@ pipeline {
 			}
 			}
       stage ('Input directive '){
-	      try{
 	      options {
                 timeout(time: 10, unit: 'SECONDS') 
 	      } 
@@ -21,18 +20,10 @@ pipeline {
             parameters {
             string(name:'username', defaultValue: 'user', description: 'Username of the user pressing Ok')
             }
-            }
         steps { 
 			echo "User: ${username} said Ok."
 			}
-	      }
-	      catch (err){
-		      echo "The time expired"
-		      retry (2){
-		      build 'pipeline'
-		      }
-	      }
-		
+	      }		
 			}
 	   stage ('Condition'){
            when {
@@ -63,5 +54,16 @@ pipeline {
 		   bat 'java -jar target/my-app-1.0-SNAPSHOT.jar'
 			}
     			}
+        stage('bug') {
+            steps {
+                retry(3) {
+                    echo 'in the retry loop'
+                    //throw new Exception('failing in retry loop') // This runs (when uncommented) several times before the pipeline exits with failure.
+                    build(job: 'pipeline', propagate: true) // This only runs once before the pipeline exits with failure.
+                }
+            }
+        }
+    
+}
 }
 }
