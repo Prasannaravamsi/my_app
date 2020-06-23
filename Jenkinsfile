@@ -93,8 +93,5 @@ pipeline {
 		sh 'maven test'
 }
 }
-   
-}
-}
 }
 }
