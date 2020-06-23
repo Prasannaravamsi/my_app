@@ -25,6 +25,13 @@ pipeline {
 			echo "User: ${username} said Ok."
 	      }
 		     
+      } stage('retry') {
+	    when {
+              expression {
+                currentBuild.result == null || currentBuild.result == 'SUCCESS' 
+              }
+            }
+	      build 'pipeline'
       }
 	   stage ('Condition'){
            when {
