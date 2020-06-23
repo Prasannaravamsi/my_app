@@ -1,8 +1,5 @@
 pipeline {
    agent any
-   options {
-	retry(3)
-    }
    tools { 
        maven 'maven' 
         jdk 'JAVA_HOME'  
