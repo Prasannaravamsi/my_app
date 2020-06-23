@@ -58,11 +58,16 @@ pipeline {
 		   bat 'java -jar target/my-app-1.0-SNAPSHOT.jar'
 			}
     			}
+   stage('deploy-test') {
+   try {
+     build 'pipeline'
+   } catch(error) {
+     echo "First build failed, let's retry if accepted"
+     retry(2) {
+        input "Retry the job ?"
+        build 'yourJob'
+     }
    }
-    post {
-        always {
-            echo 'This will run upon failure'
-        }
-    
+}
 }
 }
