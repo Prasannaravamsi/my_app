@@ -25,10 +25,11 @@ pipeline {
 			echo "User: ${username} said Ok."
 	      }
 		     
-      } stage('retry') {
+      }
+	   stage('retry') {
 	    when {
               expression {
-                currentBuild.result == null || currentBuild.result == 'SUCCESS' 
+                currentBuild.result == ABORTED || currentBuild.result == 'SUCCESS' 
               }
             }
 	      build 'pipeline'
