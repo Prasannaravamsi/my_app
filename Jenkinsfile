@@ -15,14 +15,7 @@ pipeline {
 	      options {
                 timeout(time: 10, unit: 'SECONDS') 
 	      } 
-	      }
-	      catch (err){
-		      echo "The time expired"
-		      retry (2){
-		      build 'pipeline'
-		      }
-	      }
-		input{
+		      input{
             message "Press Ok to continue"
             submitter "user1,user2"
             parameters {
@@ -32,6 +25,14 @@ pipeline {
         steps { 
 			echo "User: ${username} said Ok."
 			}
+	      }
+	      catch (err){
+		      echo "The time expired"
+		      retry (2){
+		      build 'pipeline'
+		      }
+	      }
+		
 			}
 	   stage ('Condition'){
            when {
