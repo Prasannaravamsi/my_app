@@ -48,7 +48,7 @@ pipeline {
 					}
 		stage ("Test"){
 			steps {
-				sh 'maven test'
+				sh 'mvn test'
 				}
 				}
 }
