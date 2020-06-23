@@ -60,7 +60,7 @@ pipeline {
     			}
    }
     post {
-        failure {
+        always {
             echo 'This will run upon failure'
         }
     
