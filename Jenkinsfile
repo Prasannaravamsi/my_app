@@ -34,21 +34,21 @@ pipeline {
 			}
 	   stage ('parallel') {
 			parallel {
-			stage('Test On Windows') {
+			stage('Build') {
 				steps {
-					echo "Test windows"
+				bat 'mvn clean package'
 				    }   
                     }
-			stage('Test on Linux') {
-                steps {
-					echo "Test Linux"
+			stage('Test') {
+                	steps {
+				bat 'mvn test'	
 				    }   
 					}
 					}
 					}
-		stage ("Build"){
+		stage ("Deploy"){
 			steps {
-		   bat 'mvn clean package'
+		   bat 'java -jar target/my-app-1.0-SNAPSHOT.jar'
 			}
     			}
 }
