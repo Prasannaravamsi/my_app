@@ -1,5 +1,8 @@
 pipeline {
    agent any
+	options {
+	retry (3)
+	}
    tools { 
        maven 'maven' 
         jdk 'JAVA_HOME'  
@@ -25,16 +28,6 @@ pipeline {
 			echo "User: ${username} said Ok."
 	      }
 		     
-      }
-	   stage('retry') {
-	    when {
-              expression {
-                currentBuild.result == ABORTED || currentBuild.result == 'SUCCESS' 
-              }
-            }
-		   steps {
-	      build 'pipeline'
-		   }
       }
 	   stage ('Condition'){
            when {
