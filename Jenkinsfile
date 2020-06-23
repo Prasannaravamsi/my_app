@@ -1,8 +1,8 @@
 pipeline {
    agent any
    tools { 
-        maven 'maven' 
-        jdk 'JAVA_HOME' 
+       maven 'JenkinsMaven' 
+        jdk 'JenkinsJDK'  
     }
    stages {
       stage('Hello') {
@@ -48,12 +48,7 @@ pipeline {
 					}
 		stage ("Build"){
 			steps {
-		    mavenInstallation(\'maven\')
-            goals(\'-B -DskipTests clean package\')
-			}
-			maven{
-			mavenInstallation(\'maven\')
-            goals(\'test\')
+		   bat 'mvn clean package'
 			}
         
     }
