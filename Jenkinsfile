@@ -13,7 +13,6 @@ pipeline {
       stage ('Input directive '){
 	      options {
                 timeout(time: 10, unit: 'SECONDS') 
-		retry (2)
             }
 		input{
             message "Press Ok to continue"
@@ -25,6 +24,9 @@ pipeline {
         steps { 
 			echo "User: ${username} said Ok."
 			}
+	      options{
+		      retry(1)
+	      }
 			}
       stage ('Condition'){
            when {
