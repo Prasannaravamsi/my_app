@@ -12,9 +12,7 @@ pipeline {
 			}
       stage ('Input directive '){
 	      retry(2) {
-	      options {
                 timeout(time: 10, unit: 'SECONDS') 
-	      } 
 		      input{
             message "Press Ok to continue"
             submitter "user1,user2"
