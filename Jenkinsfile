@@ -12,8 +12,14 @@ pipeline {
 			}
       stage ('Input directive '){
 	      steps {
-	      timeout(time: 10, unit: 'SECONDS')
-		      retry (2) {  
+	      retry(3) {
+  try {
+      timeout(time: 10, unit: 'SECONDS') {
+      } 
+  } catch (FlowInterruptedException e) {
+      error 'Timeout!'
+  } 
+}
 		input{
             message "Press Ok to continue"
             submitter "user1,user2"
@@ -25,7 +31,6 @@ pipeline {
 			echo "User: ${username} said Ok."
 	      }
 		      }	
-	      }	
       }
 	   stage ('Condition'){
            when {
