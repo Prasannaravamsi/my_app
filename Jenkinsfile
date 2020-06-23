@@ -20,6 +20,7 @@ pipeline {
             parameters {
             string(name:'username', defaultValue: 'user', description: 'Username of the user pressing Ok')
             }
+		      }
         steps { 
 			echo "User: ${username} said Ok."
 			}
