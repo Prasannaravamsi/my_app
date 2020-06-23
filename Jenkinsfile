@@ -11,6 +11,7 @@ pipeline {
 			}
 			}
       stage ('Input directive '){
+	      steps {
 	      retry(2) {
 		      try{
 			      timeout(time: 10, unit: 'SECONDS') } catch (err){
@@ -27,10 +28,10 @@ pipeline {
             string(name:'username', defaultValue: 'user', description: 'Username of the user pressing Ok')
             }
 		      }
-        steps { 
 			echo "User: ${username} said Ok."
-			}
-	      }			
+			
+	      }	
+      }
 	   stage ('Condition'){
            when {
 		   not {
