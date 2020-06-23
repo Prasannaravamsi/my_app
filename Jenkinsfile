@@ -11,15 +11,7 @@ pipeline {
 			}
 			}
       stage ('Input directive '){
-	      steps {
-	      retry(3) {
-  try {
-      timeout(time: 10, unit: 'SECONDS') {
-      } 
-  } catch (Exception e) {
-      error 'Timeout!'
-  } 
-}
+	      timeout(time: 10, unit: 'SECONDS')
 		input{
             message "Press Ok to continue"
             submitter "user1,user2"
