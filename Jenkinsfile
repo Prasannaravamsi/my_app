@@ -19,6 +19,7 @@ pipeline {
                   error "[${user}] catched timeout! $err"
                 }
 		      }
+	      }
 		      input{
             message "Press Ok to continue"
             submitter "user1,user2"
