@@ -1,5 +1,8 @@
 pipeline {
    agent any
+	 options {
+        retry(3)
+    }
    tools { 
        maven 'maven' 
         jdk 'JAVA_HOME'  
@@ -55,12 +58,5 @@ pipeline {
 		   bat 'java -jar target/my-app-1.0-SNAPSHOT.jar'
 			}
     			}
-   stage('deploy-test') {
-	   steps {
-   retry(2) {
-        build 'pipeline'
-     }
-	   }
-   }
 }
 }
