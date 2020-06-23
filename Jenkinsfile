@@ -16,7 +16,7 @@ pipeline {
   try {
       timeout(time: 10, unit: 'SECONDS') {
       } 
-  } catch (FlowInterruptedException e) {
+  } catch (Exception e) {
       error 'Timeout!'
   } 
 }
