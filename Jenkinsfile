@@ -24,9 +24,11 @@ pipeline {
         steps { 
 			echo "User: ${username} said Ok."
 			}
-		      retry(1)
 			}
       stage ('Condition'){
+	      options {
+	      retry (2)
+	      }
            when {
 		   not {
 				branch 'master'
